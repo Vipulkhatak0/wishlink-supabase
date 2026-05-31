@@ -19,20 +19,25 @@ if (missing.length) {
 
 const app = express();
 
-// ── CORS — allow all localhost ports + production URL ──────────
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:3000',
-  'http://localhost:4173',
   process.env.FRONTEND_URL,
+  // Allow ALL vercel preview deployments automatically
 ].filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
+    // Allow any vercel.app subdomain + localhost + exact FRONTEND_URL
+    if (
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app') ||
+      origin.endsWith('.onrender.com')
+    ) {
+      return callback(null, true);
+    }
     callback(new Error(`CORS blocked: ${origin}`));
   },
   credentials: true,
