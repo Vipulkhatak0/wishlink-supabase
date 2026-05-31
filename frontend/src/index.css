@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { font-family: 'DM Sans', system-ui, sans-serif; }
+
+.font-display { font-family: 'Playfair Display', Georgia, serif; }
+
+.gradient-rose { background: linear-gradient(135deg, #FF4D6D, #C2185B); }
+.gradient-plum { background: linear-gradient(135deg, #6B2D8B, #9B59C5); }
+.gradient-sunset { background: linear-gradient(135deg, #FF4D6D, #F7B731); }
+
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.wish-card {
+  transition: all 0.3s ease;
+}
+.wish-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Confetti */
+.confetti-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+
+/* Music player */
+.music-player { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 16px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #FF4D6D; border-radius: 3px; }
+
+/* Animations */
+@keyframes heartFloat {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100px) scale(0); opacity: 0; }
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
